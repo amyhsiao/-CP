@@ -11,10 +11,7 @@ void init(int n)
 
 int find(int x)
 {
-    if (par[x] == x)
-        return x;
-    else
-        return par[x] = find(par[x]);
+    return ((par[x] == x) ? x : par[x] = find(par[x]));
 }
 
 void unite(int x, int y)
