@@ -66,6 +66,7 @@ main()
     for (int i = 0; i < m; i++)
         cin >> g[i].a >> g[i].b >> g[i].w;
     sort(g, g + m);
+    int cnt = 0;
     for (int i = 0; i < m; i++)
     {
         if (f(g[i].a) != f(g[i].b))
@@ -74,9 +75,20 @@ main()
             mst += g[i].w;
             t[g[i].a].pb(E{g[i].b, g[i].w});
             t[g[i].b].pb(E{g[i].a, g[i].w});
+            cnt++;
         }
         else
             v.emb(i);
+    }
+    if (cnt != n - 1)
+    {
+        cout << "-1 -1";
+        return 0;
+    }
+    if (m == n - 1)
+    {
+        cout << mst << ' ' << -1 << '\n';
+        return 0;
     }
     dfs(1, 1, 0, 0);
     init();
@@ -86,7 +98,10 @@ main()
         int w = lca(g[i].a, g[i].b);
         ans = min(ans, g[i].w - w);
     }
+    if (ans == 0)
+    {
+        cout << mst << ' ' << -1;
+        return 0;
+    }
     cout << mst << ' ' << mst + ans << '\n';
 }
-
-//sampled from https://tnlolicon.blogspot.com/2019/03/zj-c495.html?fbclid=IwAR1eW4E7FT6d0KwbmeZjXSQci4jikqKpfr2A9rJTPW87aatSut-OWvMFNgk
