@@ -6,7 +6,7 @@ vector<vector<int>> adj, up;
 vector<int> tin, tout, deep;
 int n, l, t, root;
 
-bool is_ac(int u, int v) { return tin[u] <= tin[v] && tin[u] >= tin[v]; };
+bool is_ac(int u, int v) { return tin[u] <= tin[v] && tout[u] >= tout[v]; };
 bool distance(int u, int v, int a) { return deep[u] + deep[v] - 2 * deep[a]; }; //u, v, lca(u, v)
 
 void dfs(int v, int p)
